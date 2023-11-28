@@ -1,0 +1,76 @@
+➜ Um sistema para armazenar os resultados de fácil acesso aos telespectadores, fãs, etc.
+Que por ventura perderam uma transmissão de uma luta ou precisam consultar de forma minunciosa os principais detalhes da mesma. 
+Fornecendo informações de consultas simples à fãs e telespectadores como "quem venceu a luta com informações do lutador", à 
+consultas de pesquisas bem específicas para fins de didáticos de treinamento como por exemplo "em quantos rounds e o método que deu a vitória"
+
+
+<▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁>
+
+
+1. Selecione os resultados da luta de um determinado evento 
+ex:
+	Evento | Data | Local | Lutador 1 	| Lutador 2	| Vencedor	| Tipo_Vitoria | 
+	UFC FIGHT NIGHT 19 | 22/11/2023 | Las Vegas | Anderson Silva | Popó | Anderson Silva | TKO
+	UFC FIGHT NIGHT 19 | 22/11/2023 | Las Vegas | Jon Jones | Madona | Madona | Pontos
+	UFC FIGHT NIGHT 19 | 22/11/2023 | Las Vegas | Messi| Danillo Gentili| Danillo Gentili| Piada no Primeiro Round
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+2. Selecione o nome do lutador com a maior bolsa em cada evento do ano de 2023, ordenando os resultados pelo valor da bolsa
+ex:
+	ATLETA	| EVENTO	| VALOR
+	GSP	| UFC 229	| R$ 2.458.000,66
+	Poatan	| UFC 228	| R$ 589.478,21
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+3. Selecione a média dos valores da bolsa de cada evento do ano de 2021
+ex:
+	EVENTO			| MÉDIA
+	UFC 229 		| R$ 180.789,66
+	UFC FIGHT NIGHT 19 	| R$ 79.789,66
+		...
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+4. Selecione nome do lutador e o percentual de vitórias que obteve no UFC, considerando APENAS OS EVENTOS PRINCIPAIS
+ex:
+	LUTADOR		| PERCENTUAL
+	Jon Jones 	| 100%
+	Poatan	 	| 87%
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+5. Selecione o nome do lutador que mais ganhou em cada local em 2022
+ex:
+	LOCAL 		| LUTADOR 	| QUANTIDADE_VITORIAS
+	Las Vegas	| Adesanya	| 5
+	California	| Adesanya	| 3
+	RJ		| Cormier	| 2
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+6. Selecione os nomes dos lutadores que nunca foram nocauteados
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+7. Selecione os lutadores com mais vitórias do que a média de vitórias de todos os outros lutadores
+ex:
+	LUTADOR		| QUANTIDADE_VITORIAS
+	GSP 		| 13
+	JON JONES 	| 19
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+8. Selecione o total recebido (R$) por cada lutador invicto do evento:
+ex:
+	LUTADOR		| VALOR
+	Anderson Silva	| R$ 35.000.000,00
+	Jon Jones	| R$ 21.000.000,00
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+9. Selecione a quantidade de lutas que ocorreram em cada evento. Ordene pela quantidade de lutas de forma decrescente. Traga apenas os 10 eventos com mais lutas realizadas:
+ex:
+	EVENTO | LOCAL | QUANTIDADE_LUTAS
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+10. Gere um relatório com o nome de cada lutador e a quantidade de vitórias por cada tipo de resultado
+ex:
+	LUTADOR		| QUANTIDADE	 | TIPO_VITORIA
+	GSP		| 10		 | Decisão Unânime
+	GSP		| 2		 | KO
+	Jon Jones	| 8		 | KO
+	Jon Jones	| 3		 | Decisão Dividida
