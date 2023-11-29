@@ -115,6 +115,43 @@ WHERE
 ORDER BY 
 	QuantidadeVitorias DESC;
 
+------------------------------------
+➜ Terceira alternativa a ser verifica, SEGUNDO O PROFESSOR, FALTA CORRIGR UMA BESTEIRA!
+SELECT
+	
+	a.Lutador as Lutador,
+	a.nome as Localidade,
+    MAX(a.vitorias) as QuantidadeVitorias
+    
+FROM (
+    SELECT
+        lutador.id as ID,
+        lutador.nome as Lutador,
+        COUNT(lutador.id) as vitorias,
+        loc.nome
+    
+    FROM
+        lutador lutador
+        JOIN resultado resultado
+    	ON resultado.id_vencedor = lutador.id
+    
+        JOIN luta luta 
+        ON luta.id = resultado.id_luta
+    
+        JOIN local loc 
+    	ON loc.id = luta.id_local
+    
+    	JOIN evento ev 
+    	ON ev.id = luta.id_evento
+    
+    
+    GROUP BY 
+    	lutador.nome, luta.id_local
+	) a
+
+GROUP BY
+    a.nome
+
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 6ªQuestão:
