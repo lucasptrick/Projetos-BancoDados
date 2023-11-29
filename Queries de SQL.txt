@@ -1,0 +1,74 @@
+1ªQuery BD: Selecione o nome, sobrenome e itens comprados pelos clientes dos USA ou UAE 
+
+SELECT c.first_name, c.last_name, o.item
+FROM Customers as c 
+JOIN Orders as o ON c.customer_id = o.customer_id
+WHERE c.country = 'USA' OR c.country = 'UAE'
+
+2ªQuery BD: Modifique a query anterior para trazer o nome e sobrenome dos clientes mesmo que não tenham feito algum pedido.
+
+SELECT c.first_name, c.last_name, o.item
+FROM Customers as c 
+LEFT JOIN Orders as o ON c.customer_id = o.customer_id 
+WHERE c.country = 'USA' OR c.country = 'UAE'
+
+3ªQuery: Selecione o nome, sobrenome e o total do valor de compraas feitas pro cada cliente.
+
+SELECT c.first_name, c.last_name, sum(o.amount)
+FROM Customers as c 
+JOIN Orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id 
+
+4ª Query: Modifique a query anterior para que mostre apenas os clientes com compras acimas de 500$
+
+SELECT c.first_name, c.last_name, sum(o.amount)
+FROM Customers as c 
+JOIN Orders o  ON  c.customer_id = o.customer_id
+GROUP BY c.customer_id 
+HAVING SUM(O.amount) > 500
+
+5ª Query: Selecione o nome dos clientes que possuem pedidos pendentes, no seguinte formato: nome, sobrenome, quantidade de pedido pententes.
+
+SELECT c.first_name as Nome, c.last_name as Sobrenome, count(s.status) as Quantidade
+FROM Customers as c 
+JOIN Shippings s  on  c.customer_id = s.customer
+GROUP BY c.customer_id
+HAVING s.status like 'Pending'
+
+6ª Query: Selecione o valor total de vendas de teclado para cada país
+
+SELECT c.country as País, sum(o.amount) as ValorTotal
+FROM Customers as c 
+JOIN Orders o  ON  c.customer_id = o.customer_id
+GROUP BY o.order_id
+HAVING o.item like 'Keyboard'
+
+(Outro método é usando esse abaixo tbm)
+--where o.item like 'Key'
+--group by c.customer_id
+
+7ª Query: Selecione o nome da pessoa do Reino Unido com a menor quantidade de compras (em dinheiro) e o valor total gasto
+
+Implementação Correta:
+SELECT result_table.name, MIN(result_table.totalAmount) as total
+FROM (SELECT c.country as country,
+             c.first_name || ' ' || c.last_name as name,
+      	     SUM(o.amount) as totalAmount
+     FROM Customers as c
+     JOIN Orders as o ON c.customer_id = o.customer_id
+     GROUP BY c.customer_id) as result_table
+WHERE result_table.country = 'UK'
+
+----------------------------------------------------------------
+Implementação minha:
+
+SELECT c.first_name 
+FROM Customers c
+JOIN Orders o  ON  c.customer_id = o.customer_id
+GROUP BY c.customer_id
+HAVING c.country like 'UK' and MIN(o.amount) < AVG(o.amount)
+
+
+
+
+
