@@ -59,8 +59,33 @@ ORDER BY `PERCENTUAL` DESC;
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 5ªQuestão:
+SELECT
+	a.Lutador as Lutador,
+	a.nome as Localidade,
+    MAX(a.vitorias) as QuantidadeVitorias
+    
+FROM (
+    SELECT
+        lutador.id as ID,
+        lutador.nome as Lutador,
+        COUNT(lutador.id) as vitorias,
+        loc.nome
+    FROM
+        lutador lutador
+        JOIN resultado ON resultado.id_vencedor = lutador.id
+        JOIN luta ON luta.id = resultado.id_luta
+        JOIN local loc ON loc.id = luta.id_local
+    	JOIN evento ev ON ev.id = luta.id_evento
+    WHERE 
+    	YEAR(ev.data) = 2022
+    GROUP BY 
+    	lutador.nome, luta.id_local) a
+GROUP BY
+    a.nome
+ORDER BY
+    QuantidadeVitorias DESC;
 
-
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 6ªQuestão:
 select lutador.nome from lutador lutador
@@ -124,19 +149,3 @@ join metodo metodo
 on metodo.id = resultado.id_metodo
 group by lutador.nome,metodo.metodo
 order by lutador.nome;
-
-
-
-
-
-parte do 5:
-select Max(a.vitorias),a.nome
-from (select lutador.id as ID, lutador.nome as Lutador,count(lutador.id) as vitorias,loc.nome from lutador lutador
-join resultado resultado
-on resultado.id_vencedor = lutador.id
-join  luta luta
-on luta.id = resultado.id_luta
-join local loc 
-on loc.id = luta.id_local
-group by lutador.nome, luta.id_local) a
-group by a.nome;
