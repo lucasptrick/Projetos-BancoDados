@@ -1,0 +1,146 @@
+➜ Resolução da 1ªQuestão:
+select e.nome as Evento,e.data as Data,loc.nome as Local,l1.nome as Lutador_1,l2.nome as Lutador_2,vencedor.nome as Vencedor,m.metodo as Tipo_Vitória
+from luta l
+join evento e
+on e.id = l.id_evento
+join local loc
+on loc.id = l.id_local
+join lutador l1
+on l1.id = l.id_lutador1
+join lutador l2
+on l2.id = l.id_lutador2
+join resultado r
+on r.id_luta = l.id
+join lutador vencedor
+on vencedor.id = r.id_vencedor
+join metodo m
+on r.id_metodo = m.id
+where e.nome = "UFC 40";
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 2ªQuestão:
+select l1.nome as ATLETA, e.nome as Evento,Max(l.bolsa_vencedor) as Valor
+from luta l
+join lutador l1
+on l1.id = l.id_lutador1 or l1.id = l.id_lutador2
+join evento e
+on e.id = l.id_evento
+where e.data like '2023%'
+group by e.nome
+order by MAX(l.bolsa_vencedor) desc;
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 3ªQuestão:
+select e.nome as Evento,AVG(l.bolsa_vencedor) as Media
+from luta l
+join evento e
+on e.id = l.id_evento
+where e.data like '2021%'
+group by e.nome
+order by AVG(l.bolsa_vencedor) desc;
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 4ªQuestão:
+SELECT res.LUTADOR, (COUNT(r.id)/(res.TOTAL_DE_LUTA)) * 100 as PERCENTUAL
+from
+
+(select l.id as ID,l.nome as LUTADOR,count(lu1.id) as TOTAL_DE_LUTA
+from lutador l
+join luta lu1 
+on lu1.id_lutador1 = l.id or lu1.id_lutador2 =l.id
+group by l.id) res
+
+join resultado r
+on r.id_vencedor = res.ID
+
+group by res.LUTADOR  
+ORDER BY `PERCENTUAL` DESC
+37,49,113,153
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 5ªQuestão:
+
+
+
+➜ Resolução da 6ªQuestão:
+select lutador.nome from lutador lutador
+where lutador.nome not in
+(select l1.nome from lutador l1
+ join luta luta
+ on luta.id_lutador1 = l1.id or luta.id_lutador2=l1.id
+ join resultado resultado
+ on resultado.id_luta=luta.id
+ join metodo metodo
+ on metodo.id = resultado.id_metodo
+ where resultado.id_vencedor!= lutador.id and metodo.metodo = "NOCAUTE")
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 7ªQuestão:
+select lutador.nome as Lutador,count(resultado.id) as Vitórias
+from lutador lutador
+join resultado resultado
+on resultado.id_vencedor = lutador.id
+group by lutador.nome
+having COUNT(resultado.id) > (select AVG(a.ganhos) from (select count(r1.id) as ganhos
+from resultado r1
+group by r1.id_vencedor) a);
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 8ªQuestão:
+select lutador.nome,SUM(luta.bolsa_vencedor) from lutador lutador
+join luta luta
+on luta.id_lutador1 = lutador.id or luta.id_lutador2 = lutador.id
+where lutador.nome not in
+(select l1.nome from lutador l1
+ join luta luta
+ on luta.id_lutador1 = l1.id or luta.id_lutador2=l1.id
+ join resultado resultado
+ on resultado.id_luta=luta.id
+ where resultado.id_vencedor!= lutador.id )
+ group by lutador.nome;
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 9ªQuestão:
+SELECT e.nome,loc.nome,count(luta.id) as QTD_LUTAS
+From luta luta 
+join local loc on loc.id = luta.id_local 
+join evento e 
+on e.id = luta.id_evento 
+group by e.nome,loc.nome
+order by QTD_LUTAS DESC
+LIMIT 10;
+
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+➜ Resolução da 10ªQuestão:
+select lutador.nome,count(lutador.nome) as Vitórias,resultado.id,metodo.metodo
+from lutador lutador
+join resultado resultado
+on resultado.id_vencedor = lutador.id
+join metodo metodo 
+on metodo.id = resultado.id_metodo
+group by lutador.nome,metodo.metodo
+order by lutador.nome;
+
+
+
+
+
+parte do 5:
+select Max(a.vitorias),a.nome
+from (select lutador.id as ID, lutador.nome as Lutador,count(lutador.id) as vitorias,loc.nome from lutador lutador
+join resultado resultado
+on resultado.id_vencedor = lutador.id
+join  luta luta
+on luta.id = resultado.id_luta
+join local loc 
+on loc.id = luta.id_local
+group by lutador.nome, luta.id_local) a
+group by a.nome;
