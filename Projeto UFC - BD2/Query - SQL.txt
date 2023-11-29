@@ -85,7 +85,7 @@ FROM (
     	ON ev.id = luta.id_evento
     
     GROUP BY 
-    	lutador.id, lutador.nome, loc.nome) a
+    	lutador.nome, loc.nome) a
     
 WHERE 
 	rnk = 1
@@ -95,7 +95,6 @@ GROUP BY
     
 ORDER BY
 	QuantidadeVitorias DESC;
-
 
 ------------------------------------------
 ➜ Alternativa a ser verificada!
