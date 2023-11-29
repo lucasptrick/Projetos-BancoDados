@@ -45,20 +45,16 @@ order by AVG(l.bolsa_vencedor) desc;
 
 ➜ Resolução da 4ªQuestão:
 SELECT res.LUTADOR, (COUNT(r.id)/(res.TOTAL_DE_LUTA)) * 100 as PERCENTUAL
-from
-
-(select l.id as ID,l.nome as LUTADOR,count(lu1.id) as TOTAL_DE_LUTA
-from lutador l
-join luta lu1 
-on lu1.id_lutador1 = l.id or lu1.id_lutador2 =l.id
-group by l.id) res
+from (select l.id as ID,l.nome as LUTADOR,count(lu1.id) as TOTAL_DE_LUTA
+      from lutador l
+      join luta lu1 
+      on lu1.id_lutador1 = l.id or lu1.id_lutador2 =l.id
+      group by l.id) res
 
 join resultado r
 on r.id_vencedor = res.ID
-
 group by res.LUTADOR  
-ORDER BY `PERCENTUAL` DESC
-37,49,113,153
+ORDER BY `PERCENTUAL` DESC;
 
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
