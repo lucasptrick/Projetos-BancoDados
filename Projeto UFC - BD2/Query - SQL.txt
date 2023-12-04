@@ -32,7 +32,9 @@ order by MAX(l.bolsa_vencedor) desc;
 
 -------- Corrijida
 
-select l1.nome as ATLETA, e.nome as Evento, Max(l.bolsa_vencedor) as Valor
+select Max(a.Valor),a.ATLETA,a.Evento
+from
+(select l1.nome as ATLETA, e.nome as Evento,l.bolsa_vencedor as Valor
 from luta l
 join resultado resultado
 on resultado.id_luta = l.id
@@ -40,9 +42,11 @@ join lutador l1
 on l1.id = resultado.id_vencedor
 join evento e
 on e.id = l.id_evento
-where e.data like '2023%' 
-group by e.nome
-order by MAX(l.bolsa_vencedor) desc;
+where e.data like '2023%'
+group by e.nome,l1.nome
+order by MAX(l.bolsa_vencedor) desc) a
+group by Evento
+order by Max(a.Valor) desc
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 3ªQuestão:
