@@ -160,9 +160,9 @@ order by Localidade
 ➜ Resolução da 6ªQuestão:
 select lutador.nome from lutador lutador
 where lutador.nome not in
-(select l1.nome from lutador l1
+(select lutador.nome from lutador lutador
  join luta luta
- on luta.id_lutador1 = l1.id or luta.id_lutador2=l1.id
+ on luta.id_lutador1 = lutador.id or luta.id_lutador2=lutador.id
  join resultado resultado
  on resultado.id_luta=luta.id
  join metodo metodo
