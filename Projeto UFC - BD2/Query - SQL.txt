@@ -38,11 +38,11 @@ order by a.Valor desc
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 3ªQuestão:
-select e.nome as Evento,AVG(l.bolsa_vencedor) as Media
-from luta l
+select e.nome as Evento,AVG(luta.bolsa_vencedor) as Media
+from luta luta
 join evento e
 on e.id = l.id_evento
-where e.data like '2021%'
+where YEAR(e.data) = 2021
 group by e.nome
 order by AVG(l.bolsa_vencedor) desc;
 
