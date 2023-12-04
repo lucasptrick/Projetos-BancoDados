@@ -130,6 +130,30 @@ group by loc_nome_vitoria.nome) loc_nome_maxima_vitoria
 on loc_nome_maxima_vitoria.Local = lutador_nome_vitoria.nome    and   loc_nome_maxima_vitoria.vitoria = lutador_nome_vitoria.vitorias
 where YEAR(loc_nome_maxima_vitoria.data) = 2022
 group by Local;
+_________________________________________PARTITION enxugado_________________________________
+select a.Lutador,a.Localidade,a.vitorias
+from
+(SELECT
+        lutador.id as ID,
+        lutador.nome as Lutador,
+    	loc.nome as Localidade,
+        COUNT(lutador.id) as vitorias,
+    	ROW_NUMBER() OVER(PARTITION BY loc.nome ORDER BY COUNT(lutador.id) DESC) as rnk
+    
+    FROM
+        lutador lutador
+        JOIN resultado resultado
+    	ON resultado.id_vencedor = lutador.id    
+        JOIN luta luta 
+        ON luta.id = resultado.id_luta  
+        JOIN local loc 
+    	ON loc.id = luta.id_local
+    	JOIN evento ev 
+    	ON ev.id = luta.id_evento
+    GROUP BY 
+    	lutador.nome, loc.nome) a  
+where a.rnk = 1
+order by Localidade
 ------------------------------------------
 ➜ Alternativa a ser verificada!
 
