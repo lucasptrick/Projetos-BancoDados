@@ -22,17 +22,17 @@ where e.nome = "UFC 40";
 ➜ Resolução da 2ªQuestão:
 select a.Evento  ,Max(a.Valor)as valor_da_bolsa,a.ATLETA
 from
-(select lutador.nome as ATLETA, e.nome as Evento,l.bolsa_vencedor as Valor
-from luta l
+(select lutador.nome as ATLETA, e.nome as Evento,luta.bolsa_vencedor as Valor
+from luta luta
 join resultado resultado
-on resultado.id_luta = l.id
+on resultado.id_luta = luta.id
 join lutador lutador
 on lutador.id = resultado.id_vencedor
 join evento e
-on e.id = l.id_evento
+on e.id = luta.id_evento
 where e.data like '2023%'
 group by e.nome,lutador.nome
-order by MAX(l.bolsa_vencedor) desc) a
+order by MAX(luta.bolsa_vencedor) desc) a
 group by Evento
 order by Max(a.Valor) desc
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
