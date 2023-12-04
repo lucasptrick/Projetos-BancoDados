@@ -38,29 +38,28 @@ order by a.Valor desc
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 3ªQuestão:
-select e.nome as Evento,AVG(luta.bolsa_vencedor) as Media
-from luta luta
+select e.nome as Evento,AVG(l.bolsa_vencedor) as Media
+from luta l
 join evento e
 on e.id = l.id_evento
-where YEAR(e.data) = 2021
+where e.data like '2021%'
 group by e.nome
 order by AVG(l.bolsa_vencedor) desc;
 
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 4ªQuestão:
-SELECT res_sub.LUTADOR, (COUNT(resultado.id)/(res_sub.TOTAL_DE_LUTA)) * 100 as PERCENTUAL
-from (select lutador.id as ID,lutador.nome as LUTADOR,count(luta.id) as TOTAL_DE_LUTA
-      from lutador lutador
-      join luta luta 
-      on luta.id_lutador1 = lutador.id or luta.id_lutador2 =lutador.id
-      group by lutador.id) res_sub
+SELECT res.LUTADOR, (COUNT(r.id)/(res.TOTAL_DE_LUTA)) * 100 as PERCENTUAL
+from (select l.id as ID,l.nome as LUTADOR,count(lu1.id) as TOTAL_DE_LUTA
+      from lutador l
+      join luta lu1 
+      on lu1.id_lutador1 = l.id or lu1.id_lutador2 =l.id
+      group by l.id) res
 
-join resultado resultado
-on resultado.id_vencedor = res_sub.ID
-group by res_sub.LUTADOR  
+join resultado r
+on r.id_vencedor = res.ID
+group by res.LUTADOR  
 ORDER BY `PERCENTUAL` DESC;
-
 
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
@@ -102,6 +101,35 @@ GROUP BY
 ORDER BY
 	QuantidadeVitorias DESC;
 
+-----------------------------SÓ COM O BASICO----------------
+select lutador_nome_vitoria.Lutador,lutador_nome_vitoria.vitorias,loc_nome_maxima_vitoria.Local
+from 
+(select count(lutador.id) as vitorias,lutador.nome as Lutador,loc.nome
+from lutador lutador
+join resultado resultado
+on resultado.id_vencedor = lutador.id
+join  luta luta
+on luta.id = resultado.id_luta
+join local loc 
+on loc.id = luta.id_local
+group by lutador.nome, luta.id_local) lutador_nome_vitoria
+join
+(select loc_nome_vitoria.data,Max(loc_nome_vitoria.vitorias) as vitoria,loc_nome_vitoria.nome as Local
+from (select count(lutador.id) as vitorias,loc.nome,e.data
+from lutador lutador
+join resultado resultado
+on resultado.id_vencedor = lutador.id
+join  luta luta
+on luta.id = resultado.id_luta
+join evento e 
+on e.id = luta.id_evento
+join local loc 
+on loc.id = luta.id_local
+group by lutador.nome, luta.id_local) loc_nome_vitoria
+group by loc_nome_vitoria.nome) loc_nome_maxima_vitoria
+on loc_nome_maxima_vitoria.Local = lutador_nome_vitoria.nome    and   loc_nome_maxima_vitoria.vitoria = lutador_nome_vitoria.vitorias
+where YEAR(loc_nome_maxima_vitoria.data) = 2022
+group by Local;
 ------------------------------------------
 ➜ Alternativa a ser verificada!
 
