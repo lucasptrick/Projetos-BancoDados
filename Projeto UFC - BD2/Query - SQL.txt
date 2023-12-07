@@ -212,7 +212,7 @@ LIMIT 10;
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 10ªQuestão:
-select lutador.nome,count(lutador.nome) as Vitórias,resultado.id,metodo.metodo
+select lutador.nome,count(lutador.nome) as Vitórias,metodo.metodo
 from lutador lutador
 join resultado resultado
 on resultado.id_vencedor = lutador.id
