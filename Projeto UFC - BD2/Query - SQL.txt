@@ -38,7 +38,7 @@ order by a.Valor DESC
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 3ªQuestão:
-select e.nome as Evento,AVG(l.bolsa_vencedor) as Media
+select e.nome as Evento, ROUND(AVG(l.bolsa_vencedor),2) as Media
 from luta l
 join evento e
 on e.id = l.id_evento
