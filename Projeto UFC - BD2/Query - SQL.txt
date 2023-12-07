@@ -20,9 +20,9 @@ where e.nome = "UFC 40";
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 2ªQuestão:
-select Max(a.Valor),a.ATLETA,a.Evento
+select a.ATLETA,a.EVENTO, Max(a.Valor) as VALOR
 from
-(select lutador.nome as ATLETA, e.nome as Evento,luta.bolsa_vencedor as Valor
+(select lutador.nome as ATLETA, e.nome as EVENTO,luta.bolsa_vencedor as Valor
 from luta luta
 join resultado resultado
 on resultado.id_luta = luta.id
@@ -34,7 +34,7 @@ where YEAR(e.data) = 2023
 group by e.nome,lutador.nome
 order by luta.bolsa_vencedor desc) a
 group by Evento
-order by a.Valor desc
+order by a.Valor DESC
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 3ªQuestão:
