@@ -205,7 +205,7 @@ From luta luta
 join local loc on loc.id = luta.id_local 
 join evento e 
 on e.id = luta.id_evento 
-group by e.nome,loc.nome
+group by e.nome
 order by QTD_LUTAS DESC
 LIMIT 10;
 
