@@ -158,7 +158,8 @@ order by Localidade
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 6ªQuestão:
-select lutador.nome from lutador lutador
+select lutador.nome as NOME
+from lutador lutador
 where lutador.nome not in
 (select lutador.nome from lutador lutador
  join luta luta
