@@ -49,7 +49,7 @@ order by AVG(l.bolsa_vencedor) desc;
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
 
 ➜ Resolução da 4ªQuestão:
-SELECT res.LUTADOR, (COUNT(r.id)/(res.TOTAL_DE_LUTA)) * 100 as PERCENTUAL
+SELECT res.LUTADOR, ROUND((COUNT(r.id)/(res.TOTAL_DE_LUTA)) * 100, 2) as PERCENTUAL
 from (select l.id as ID,l.nome as LUTADOR,count(lu1.id) as TOTAL_DE_LUTA
       from lutador l
       join luta lu1 
