@@ -138,7 +138,7 @@ from
         lutador.nome as Lutador,
     	loc.nome as Localidade,
         COUNT(lutador.id) as vitorias,
-    	ROW_NUMBER() OVER(PARTITION BY loc.nome ORDER BY COUNT(lutador.id) DESC) as rnk
+    	ROW_NUMBER() OVER(PARTITION BY loc.nome ORDER BY COUNT(lutador.id) DESC) as rank
     
     FROM
         lutador lutador
@@ -152,7 +152,7 @@ from
     	ON ev.id = luta.id_evento
     GROUP BY 
     	lutador.nome, loc.nome) a  
-where a.rnk = 1
+where a.rank = 1
 order by Localidade
 
 ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
